@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exam.mapper.InsertUserMapper">
+    <insert id="insertUser">
+        INSERT INTO T_USER(YHID,YHXM,YHKL,YHXB,YHBM,CSRQ,SFJY,PXH,DJSJ,DJRQ)
+        values (#{yhid},#{yhxm},#{yhkl},#{yhxb},#{yhbm},#{csrq},#{sfjy},#{pxh},#{DJSJ},#{DJRQ})
+    </insert>
+</mapper>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exam.mapper.SelectUserMapper">
+    <select id="selectAllPer" resultType="com.commodity_trading.entity.Permission">
+        select id, name, str
+        from page_per
+    </select>
+    <delete id="deletePermission">
+        delete
+        from user_per
+        where id = #{id}
+          and per = #{per}
+    </delete>
+    <insert id="addPermission">
+        insert into user_per
+        values (#{id}, #{per})
+    </insert>
+    <select id="selectPermission" resultType="com.commodity_trading.entity.Permission">
+        select id, per
+        from user_per
+        where id = #{id}
+          and per = #{str}
+    </select>
+
+    <select id="selectUserById" resultType="com.exam.entity.TUser">
+        SELECT YHID, YHXM, YHXB, YHBM
+        FROM T_USER
+    </select>
+    <select id="selectAllUser" resultType="com.exam.entity.TUser">
+        SELECT YHID, YHXM, YHXB, YHBM, DJRQ, SFJY, PXH
+        FROM T_USER
+    </select>
+    <select id="selectUserByIdBm" resultType="com.exam.entity.TUser">
+        SELECT YHID,
+        YHXM,
+        YHKL,
+        YHXB,
+        YHBM,
+        CSRQ,
+        SFJY,
+        PXH
+        FROM T_USER
+        <where>
+            <if test="yhid!= null">
+                YHID like concat('%',#{yhid},'%'),
+            </if>
+            <if test="yhbm != null">
+                YHBM like concat('%',#{yhbm},'%'),
+            </if>
+        </where>
+        ORDER BY PXH ASC
+    </select>
+    <select id="selectUserByIdPwd" resultType="com.exam.entity.TUser">
+        SELECT YHID,YHKL FROM T_USER WHERE  YHID = #{username} AND  YHKL = #{password}
+    </select>
+    <select id="selectUserId" resultType="java.lang.String">
+        SELECT YHID FROM T_USER
+    </select>
+
+</mapper>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:jsp="http://java.sun.com/JSP/Page" >
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title></title>
+    <jsp:include page="../resources/v2/webui.jsp">
+        <jsp:param name="UIS" value="FORM_DGRID_LAYER_BTN_LAYOUT_PAGE"/>
+    </jsp:include>
+    <script type="text/javascript" src="../../../../static/plugg/DatePicker/WdatePicker.js"></script>
+    <link rel="stylesheet" href="../../../../static/tdh/form/css/form.css"/>
+    <script type="text/javascript" src="../../../../static/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../../static/tdh/form/js/tdh.form.js"></script>
+    <script type="text/javascript" src="../../../../static/tdh/layout/js/tdh.divresize.js"></script>
+</head>
+<body>
+<table class="tdh_form">
+    <colgroup>
+        <col width="11%"/>
+        <col width="22%"/>
+    </colgroup>
+    <tr>
+        <td class="tdTitle"><i class="required">*</i>用户ID</td>
+        <td class="tdCont"><input class="inputText" type="text" /></td>
+        <td class="tdTitle"><i class="required">*</i>用户姓名</td>
+        <td class="tdCont"><input class="inputText" type="text" /></td>
+    <tr>
+    <tr>
+    <tr>
+        <td class="tdTitle"><i class="required">*</i>用户口令</td>
+        <td class="tdCont"><input class="inputText" type="text" /></td>
+        <td class="tdTitle"><i class="required">*</i>重复口令</td>
+        <td class="tdCont"><input class="inputText" type="text" /></td>
+    <tr>
+    <tr>
+        <td class="tdTitle">用户部门</td>
+        <td class="tdCont">
+            <select class="inputSel">
+                <option value=""></option>
+                <option value="1">1</option>
+            </select>
+        </td>
+        <td class="tdTitle">用户性别</td>
+        <td class="tdCont">
+            <select class="inputSel">
+				<option value=""></option>
+                <option value="0">男</option>
+                <option value="1">女</option>
+            </select>
+        </td>
+    </tr>
+	<tr>
+		<td class="tdTitle">出生日期</td>
+		<td class="tdCont"><input class="Wdate inputText" type="text" onClick="WdatePicker()" readonly=""/></td>
+		<td class="tdTitle"><i class="required">*</i>排序号</td>
+		<td class="tdCont"><input class="inputText" type="text" /></td>
+	</tr>
+	<tr>
+		<td class="tdTitle">是否禁用</td>
+		<td class="tdCont" colspan="5">
+			<label><input name="fxk1" class="inputCheck" type="checkbox"/></label>
+		</td>
+	</tr>
+</table>
+<script>
+    $(function () {
+        $('body').resize(function () {
+            $('iframe[data-id="fixedlayout_iframe"]', parent.document).height($(this).outerHeight());
+        })
+    })
+</script>
+</body>
+</html>
