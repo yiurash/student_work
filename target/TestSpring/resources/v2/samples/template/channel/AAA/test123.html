@@ -134,7 +134,9 @@
         "cbr":"承办人"
     }]
     $(function(){
-       // mygrid.loadXML("grid.xml");
+        mygrid = new dhtmlXGridObject('grid');
+        mygrid.loadXML("grid.xml");
+        mygrid.init();
     });
 </script>
 </body>

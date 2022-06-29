@@ -127,7 +127,7 @@
         if ($("#zh").val() == "" || $("#pwd").val() == "") {
             alert("账号或密码未填")
         } else {
-            window.location.href = "loginservelt?zh=" + $("#zh").val() + "&pwd=" + $("#pwd").val();
+            window.location.href = "login?zh=" + $("#zh").val() + "&pwd=" + $("#pwd").val();
         }
     }
 </script>

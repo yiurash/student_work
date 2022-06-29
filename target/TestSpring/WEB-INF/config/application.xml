@@ -13,8 +13,8 @@
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
-                <value>classpath:log4j.properties</value>
-                <value>classpath:jdbc.properties</value>
+                <value>classpath*:../webapp/WEB-INF/config/jdbc.properties</value>
+                <value>classpath*:../webapp/WEB-INF/config/log4j.properties</value>
             </list>
         </property>
     </bean>
@@ -33,7 +33,7 @@
     <!-- 扫描Mapper文件并生成dao对象 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
-        <property name="basePackage" value="com.test.fx.dao"></property>
+        <property name="basePackage" value="com.exam.mapper"></property>
     </bean>
     <!-- 配置事务管理器 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

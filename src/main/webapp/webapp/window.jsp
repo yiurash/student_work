@@ -6,12 +6,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page import="static com.exam.mapper.CodeToSome.MAP_BM" %>
-<%@ page import="static com.exam.service.SelectUserService.*" %>
+<jsp:directive.page import="org.springframework.web.context.WebApplicationContext"/>
 <%@ page import="java.util.List" %>
+<%@ page import="com.exam.mapper.SelectUserMapper" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <!DOCTYPE html>
 <%
-    List<String> useridlist = selectUserId();
+    WebApplicationContext context = (WebApplicationContext)this.getServletContext().getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
+    SelectUserMapper selectUserMapper = (SelectUserMapper)context.getBean("SelectUserMapper");
+    List<String> useridlist = selectUserMapper.selectUserId();
     String label = (String) request.getAttribute("label");
     if (label == null) {
         label = "";
@@ -19,6 +22,7 @@
 %>
 <html>
 <head>
+
     <meta charset="utf-8">
     <title></title>
     <script src="../js/jquery.min.js"></script>
@@ -29,7 +33,7 @@
     <script type="text/javascript" src="/resources/static/lib/jquery.min.js"></script>
     <script type="text/javascript" src="/resources/static/tdh/form/js/tdh.form.js"></script>
     <script type="text/javascript" src="/resources/static/tdh/layout/js/tdh.divresize.js"></script>
-    <jsp:include page="">
+    <jsp:include page="/resources/v2/webui.jsp">
         <jsp:param name="UIS" value="FORM_DGRID_LAYER_BTN_LAYOUT_PAGE"/>
     </jsp:include>
 </head>
@@ -75,8 +79,8 @@
             </select>
         </td>
         <td class="tdTitle" id="yhxb">用户性别</td>
-        <td class="tdCont">
-            <select class="inputSel">
+        <td class="tdCont k">
+            <select class="inputSel" >
                 <option value=""></option>
                 <option value="男">男</option>
                 <option value="女">女</option>
@@ -85,14 +89,14 @@
     </tr>
     <tr>
         <td class="tdTitle" >出生日期</td>
-        <td class="tdCont"><input class="Wdate inputText" type="text" onClick="WdatePicker()" readonly="" name="csrq"/></td>
+        <td class="tdCont"><input class="Wdate inputText k" type="text" onClick="WdatePicker()" readonly="" name="csrq"/></td>
         <td class="tdTitle"><i class="required">*</i>排序号</td>
-        <td class="tdCont"><input class="inputText" type="text" id="pxhk" name="pxh"/></td>
+        <td class="tdCont"><input class="inputText k" type="text" id="pxhk" name="pxh"/></td>
     </tr>
     <tr>
         <td class="tdTitle" >是否禁用</td>
         <td class="tdCont" colspan="5">
-            <label><input name="fxk1" class="inputCheck" type="checkbox" checked="false" id="choose"/></label>
+            <label><input name="fxk1" class="inputCheck " type="checkbox" checked="false" id="choose"/></label>
         </td>
     </tr>
     <tr>
@@ -308,7 +312,7 @@
                 type = "IN";
             }
         }
-        //初始设置窗口是否可选中
+        //初始设置窗口是否可选中 这是直接通过id获取
         $("#yhidk").attr("readOnly", set("1"))
         $("#yhxmk").attr("readOnly", set(""))
         $("#yhklk").attr("readOnly", set(""))

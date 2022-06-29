@@ -6,13 +6,17 @@
 <%@ page import="com.exam.entity.TUser" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="static com.exam.mapper.CodeToSome.MAP_XB" %>
+<jsp:directive.page import="org.springframework.web.context.WebApplicationContext"/>
+<%@ page import="com.exam.mapper.SelectUserMapper" %>
 <%
     /**
      * 默认全部数据加载
      */
+    WebApplicationContext context = (WebApplicationContext)this.getServletContext().getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
+    SelectUserMapper selectUserMapper = (SelectUserMapper)context.getBean("SelectUserMapper");
     String yhid = "";
     String yhbm = "";
-    List<TUser> tUserList1 = selectUserByIdBm(yhid, yhbm);
+    List<TUser> tUserList1 = selectUserMapper.selectUserByIdBm(yhid, yhbm);
     JSONArray jsonArray1 = JSONArray.fromObject(tUserList1);
 %>
 <!DOCTYPE html><html>
@@ -55,6 +59,9 @@
             display: inline
         }
     </style>
+    <jsp:include page="/resources/v2/webui.jsp">
+        <jsp:param name="UIS" value="FORM_DGRID_LAYER_BTN_LAYOUT_PAGE"/>
+    </jsp:include>
 </head>
 <body>
 <div style="display: flex;">
@@ -180,7 +187,7 @@
                 ',toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no, status=no')
         } else if (type == 'del') {
             if (confirm("确认删除么")) {
-                $.post("operationservelt", {
+                $.post("operation", {
                     type: "DELETE",
                     yhid: $("#" + index).text()
                 }, function (data, status) {
